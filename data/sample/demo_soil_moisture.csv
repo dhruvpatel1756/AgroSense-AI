@@ -1,0 +1,6 @@
+date,latitude,longitude,soil_moisture,ndvi,ndmi,ndwi,evi,savi,crop,growth_stage,moisture_stress,irrigation_advisory
+2026-09-04,23.586,72.369,0.238,0.51,0.18,0.12,0.34,0.38,Cotton,Flowering,Watch,Continue monitoring
+2026-09-11,23.586,72.369,0.224,0.52,0.16,0.11,0.35,0.39,Cotton,Flowering,Watch,Plan irrigation
+2026-09-18,23.586,72.369,0.198,0.49,0.13,0.09,0.33,0.37,Cotton,Reproductive Development,Moderate Stress,Plan irrigation
+2026-09-25,23.586,72.369,0.181,0.47,0.11,0.08,0.31,0.35,Cotton,Reproductive Development,Moderate Stress,Irrigation recommended
+2026-10-02,23.586,72.369,0.214,0.48,0.14,0.10,0.32,0.36,Cotton,Reproductive Development,Watch,Continue monitoring

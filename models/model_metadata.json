@@ -1,0 +1,33 @@
+{
+  "mae": 0.04541407661248751,
+  "rmse": 0.05405308644360333,
+  "r2": 0.30099948052859893,
+  "train_samples": 280,
+  "test_samples": 70,
+  "total_samples": 350,
+  "feature_columns": [
+    "sm_surface",
+    "sm_surface_lag1",
+    "sm_surface_lag3",
+    "sm_surface_lag7",
+    "sm_change_1d",
+    "rain_mm",
+    "rain_3d_mm",
+    "rain_7d_mm",
+    "et0_mm",
+    "et0_3d_mm",
+    "et0_7d_mm",
+    "temp_mean_c",
+    "temp_range_c",
+    "s1_vv",
+    "s1_vh",
+    "s1_vv_vh",
+    "s2_ndvi",
+    "s2_ndmi",
+    "doy_sin",
+    "doy_cos"
+  ],
+  "model": "RandomForestRegressor",
+  "target": "next_day_sm_surface",
+  "split": "chronological_80_20"
+}

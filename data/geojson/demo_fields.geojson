@@ -1,0 +1,19 @@
+{
+  "type": "FeatureCollection",
+  "name": "synthetic_demo_locations_not_field_boundaries",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "demo-location-1",
+        "label": "Synthetic presentation marker",
+        "data_mode": "DEMO",
+        "surveyed_field": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [72.369, 23.586]
+      }
+    }
+  ]
+}
