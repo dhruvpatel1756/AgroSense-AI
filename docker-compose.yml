@@ -1,0 +1,49 @@
+services:
+  database:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: agrosense
+      POSTGRES_USER: agrosense
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-development-only}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/app/database/schema.sql:/docker-entrypoint-initdb.d/001-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agrosense -d agrosense"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATA_MODE: ${DATA_MODE:-REAL}
+      DATABASE_URL: postgresql://agrosense:${POSTGRES_PASSWORD:-local-development-only}@database:5432/agrosense
+      GOOGLE_EARTH_ENGINE_PROJECT: ${GOOGLE_EARTH_ENGINE_PROJECT:-}
+      GOOGLE_APPLICATION_CREDENTIALS: /run/secrets/earth-engine-credentials.json
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: bind
+        source: "${GOOGLE_APPLICATION_CREDENTIALS:?Set GOOGLE_APPLICATION_CREDENTIALS to the service-account JSON path in .env}"
+        target: /run/secrets/earth-engine-credentials.json
+        read_only: true
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  postgres_data:

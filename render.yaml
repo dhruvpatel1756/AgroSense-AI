@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: agrosense-ai
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: DATA_MODE
+        value: REAL
+      - key: IRRIGATION_STRESS_THRESHOLD
+        value: "0.16"
+      - key: IRRIGATION_WATCH_THRESHOLD
+        value: "0.22"
+      - key: GOOGLE_EARTH_ENGINE_PROJECT
+        sync: false
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        value: /etc/secrets/earthengine-key.json
+      - key: WEATHER_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
